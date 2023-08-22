@@ -13,6 +13,7 @@ import kebriel.ctf.internal.nms.GamePacket;
 import kebriel.ctf.player.CTFPlayer;
 import kebriel.ctf.internal.player.GameSound;
 import kebriel.ctf.internal.player.text.Text;
+import kebriel.ctf.player.item.InvSlot;
 import kebriel.ctf.player.item.Item;
 import net.minecraft.server.v1_8_R3.EnumParticle;
 import org.bukkit.Material;
@@ -72,8 +73,18 @@ public class ItemPearl implements ItemAbility, Purchaseable, EventReactor {
 	}
 
 	@Override
+	public InvSlot getSlot() {
+		return InvSlot.EXTRA_ITEM;
+	}
+
+	@Override
 	public Item getItem() {
 		return Item.PEARL;
+	}
+
+	@Override
+	public ItemAbility[] incompatibleWith() {
+		return new ItemAbility[0];
 	}
 
 	@EventReact(allowedWhen = GameStage.IN_GAME)

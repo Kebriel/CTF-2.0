@@ -168,14 +168,14 @@ public class ConnectionPooling {
         private void startConnectionValidationThread() {
             if(VALIDATION_THREAD != null)
                 return;
-            VALIDATION_THREAD = new AsyncExecutor(() -> {
+            VALIDATION_THREAD = new AsyncExecutor(task -> {
                 for (Connection connection : pool) {
                     if (!isValid(connection)) {
                         pool.remove(connection);
                         pool.offer(createConnection());
                     }
                 }
-            }).doRepeating(60);
+            }).doRepeating(0, 60, TimeUnit.SECONDS);
         }
 
         public void shutdown() {
