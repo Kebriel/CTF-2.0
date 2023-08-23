@@ -170,8 +170,9 @@ public class SQLHelper {
                 }
             } catch(SQLException ex) {
                 SQLError.log(ex);
+            } finally {
+                ConnectionPooling.MAIN_POOL.releaseConnection(conn);
             }
-            ConnectionPooling.MAIN_POOL.releaseConnection(conn);
         });
     }
 
