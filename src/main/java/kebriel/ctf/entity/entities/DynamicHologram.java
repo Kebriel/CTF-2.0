@@ -1,6 +1,7 @@
 package kebriel.ctf.entity.entities;
 
 import io.netty.util.internal.ConcurrentSet;
+import kebriel.ctf.entity.components.HologramItemDisplay;
 import kebriel.ctf.entity.components.RenderOnly;
 import kebriel.ctf.entity.components.Rotatable;
 import kebriel.ctf.internal.nms.GamePacket.SpawnEntity;
@@ -151,7 +152,7 @@ public class DynamicHologram extends Hologram implements Rotatable<DynamicHologr
         }
     }
 
-    public static class DisplayNode extends Hologram implements Rotatable<DisplayNode> {
+    public static class DisplayNode extends Hologram implements Rotatable<DisplayNode>, HologramItemDisplay<DisplayNode> {
 
         private final DynamicHologram owner;
         private final int id;
