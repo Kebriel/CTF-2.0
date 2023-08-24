@@ -9,52 +9,46 @@
    1. SQL & Data Management
       1. Standardized SQL Statements
       2. Wrapped Statements
-      3. SQL Data Processing
-      4. SQL Transactions
-      5. Stat System
+      3. Data Structures
+      4. Stat System
    2. Packets
       1. Packet Wrapping
       2. Packet Rendering
    3. Threading
       1. Worker Threads
       2. Thread Pooling
-      3. Async Task Handling
+      3. Custom Async Tasks
    4. Async Game Core
       1. Dual-Threaded Approach
-      2. Async Phase & Timer Management
    5. Event Framework
       1. Asynchronous Events
       2. Event Pre- and Post-Processing
       5. Advanced Event Handling w/ @EventReact 
-         1. Async Event Handling
+         1. Instance-Friendly Registration **(WIP)**
          2. Thread Control
          3. Stage-Dependent Event Handling
-         4. Intuitive Event Priority
+         4. Intuitive Event Priority **(WIP)**
    6. Player
       1. Wrapper Classes
       2. Inventory Profile System
    7. Text Display & Messaging
       1. Text-Building Utility
-      2. Placeholders
-      3. Constant-Based Framework
+      2. Constant-Based Framework
          1. Messages
          2. Titles
-      4. Scoreboards
+      3. Scoreboards
    8. GUIs
       1. Page Support
-      2. Drawability/Visualization
-      3. Drawable Placeholders
+      2. Drawability/Backend Visualization
    9. Entity Framework
-      1. In-built Spawn/Render Options
-      2. Rendered Entity Registry
-      3. Real-time Updating/Refreshing
-      4. Holograms
+      1. Spawn or Render Support
+      2. Real-time Updating/Refreshing
+      3. Holograms
          1. Advanced Holograms & Display Nodes
 3. Other Features
    1. Connection Pooling
    2. Packet Event & Listener
    3. Basic Rate Limiter
-   4. API Querying
 
 ### 1. Overview
 
