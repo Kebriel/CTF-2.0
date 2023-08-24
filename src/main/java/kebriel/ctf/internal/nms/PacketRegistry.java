@@ -5,6 +5,7 @@ import kebriel.ctf.event.reaction.EventReaction;
 import kebriel.ctf.event.reaction.ThreadControl;
 import kebriel.ctf.event.async.AsyncPlayerMoveChunkEvent;
 import kebriel.ctf.event.reaction.EventReactor;
+import kebriel.ctf.internal.concurrent.AsyncExecutor;
 import kebriel.ctf.player.CTFPlayer;
 import kebriel.ctf.util.JavaUtil;
 import kebriel.ctf.util.MinecraftUtil;
@@ -101,18 +102,22 @@ public class PacketRegistry implements EventReactor {
      * Updates the render of any/all packets that have been rendered for this player
      */
     public static void updateAll(CTFPlayer player) {
-        for(GamePacket packet : getAllRenderedFor(player)) {
-            updateFor(packet, player);
-        }
+        AsyncExecutor.doAsyncIfNot(() -> {
+            for(GamePacket packet : getAllRenderedFor(player)) {
+                updateFor(packet, player);
+            }
+        });
     }
 
     /**
      * Unrenders any/all packets that have been rendered for this player
      */
     public static void unrenderAllFor(CTFPlayer player) {
-        for(GamePacket packet : getAllRenderedFor(player)) {
-            unrenderFor(packet, player);
-        }
+        AsyncExecutor.doAsyncIfNot(() -> {
+            for(GamePacket packet : getAllRenderedFor(player)) {
+                unrenderFor(packet, player);
+            }
+        });
     }
 
     /**
@@ -137,9 +142,11 @@ public class PacketRegistry implements EventReactor {
      * @param players NMSPlayer varargs
      */
     public static void render(GamePacket packet, CTFPlayer... players) {
-        for(CTFPlayer player : players) {
-            renderFor(packet, player);
-        }
+        AsyncExecutor.doAsyncIfNot(() -> {
+            for(CTFPlayer player : players) {
+                renderFor(packet, player);
+            }
+        });
     }
 
     /**
@@ -148,15 +155,19 @@ public class PacketRegistry implements EventReactor {
      * @param players NMSPlayer varargs
      */
     public static void unrender(GamePacket packet, CTFPlayer... players) {
-        for(CTFPlayer player : players) {
-            unrenderFor(packet, player);
-        }
+        AsyncExecutor.doAsyncIfNot(() -> {
+            for(CTFPlayer player : players) {
+                unrenderFor(packet, player);
+            }
+        });
     }
 
     public static void unrender(GamePacket packet, Collection<WeakReference<CTFPlayer>> players) {
-        for(WeakReference<CTFPlayer> player : players) {
-            unrenderFor(packet, player.get());
-        }
+        AsyncExecutor.doAsyncIfNot(() -> {
+            for(WeakReference<CTFPlayer> player : players) {
+                unrenderFor(packet, player.get());
+            }
+        });
     }
 
     /**
@@ -165,9 +176,11 @@ public class PacketRegistry implements EventReactor {
      * @param players NMSPlayer varargs
      */
     public static void update(GamePacket packet, CTFPlayer... players) {
-        for(CTFPlayer player : players) {
-            updateFor(packet, player);
-        }
+        AsyncExecutor.doAsyncIfNot(() -> {
+            for(CTFPlayer player : players) {
+                updateFor(packet, player);
+            }
+        });
     }
 
     /**
