@@ -11,6 +11,7 @@ import kebriel.ctf.player.PlayerState;
 import kebriel.ctf.internal.player.text.Text;
 import kebriel.ctf.player.item.CTFItem;
 import kebriel.ctf.player.item.InvSlot;
+import kebriel.ctf.util.JavaUtil;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 
@@ -50,7 +51,7 @@ public class AbilityJuggernaut implements ItemModificationAbility, Purchaseable 
 
 	@Override
 	public Text getDescription() {
-		return Text.get().yellow("Spawn with ").aqua("Protection " + Constants.JUGGERNAUT_PROT_STRENGTH).yellow(" on your chestplate");
+		return Text.get().yellow("Spawn with ").aqua("Protection " + JavaUtil.asNumeral(Constants.JUGGERNAUT_PROT_STRENGTH)).yellow(" on your chestplate");
 	}
 
 	@Override

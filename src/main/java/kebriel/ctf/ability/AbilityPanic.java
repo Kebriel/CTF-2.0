@@ -9,6 +9,7 @@ import kebriel.ctf.event.reaction.EventReactor;
 import kebriel.ctf.event.reaction.GameStage;
 import kebriel.ctf.player.CTFPlayer;
 import kebriel.ctf.internal.player.text.Text;
+import kebriel.ctf.util.JavaUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -43,7 +44,7 @@ public class AbilityPanic implements Ability, EventReactor {
 
 	@Override
 	public Text getDescription() {
-		return Text.get().primary("Receive ").secondary("Speed " + Constants.PANIC_SPEED_STRENGTH + " (" + Constants.PANIC_SPEED_DURATION + "s)").primary(" when you")
+		return Text.get().primary("Receive ").secondary("Speed " + JavaUtil.asNumeral(Constants.PANIC_SPEED_STRENGTH) + " (" + Constants.PANIC_SPEED_DURATION + "s)").primary(" when you")
 				.newLine().primary("fall below ").red(((double)Constants.PANIC_THRESHOLD/2) + "❤");
 	}
 

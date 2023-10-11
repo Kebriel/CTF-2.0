@@ -9,6 +9,7 @@ import kebriel.ctf.event.reaction.EventReactor;
 import kebriel.ctf.event.reaction.GameStage;
 import kebriel.ctf.player.CTFPlayer;
 import kebriel.ctf.internal.player.text.Text;
+import kebriel.ctf.util.JavaUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -43,7 +44,7 @@ public class AbilityMending implements Ability, EventReactor {
 
 	@Override
 	public Text getDescription() {
-		return Text.get().primary("Receive ").red("Regen " + Constants.MENDING_REGEN_STRENGTH + " (" + Constants.MENDING_REGEN_DURATION + "s)").primary(" when you")
+		return Text.get().primary("Receive ").red("Regen " + JavaUtil.asNumeral(Constants.MENDING_REGEN_STRENGTH) + " (" + Constants.MENDING_REGEN_DURATION + "s)").primary(" when you")
 				.newLine().primary("fall below ").red(((double)Constants.MENDING_THRESHOLD/2) + "❤");
 	}
 

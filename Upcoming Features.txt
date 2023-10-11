@@ -1,0 +1,63 @@
+### A list of planned features
+- Allow Bandage to work on teammates, and double its
+strength if it's used this way
+- Add the 'Reinforce' perk
+    - Grants a redstone torch in-game. When clicked,
+    brings up a menu of all teammates. Choosing a
+    teammate teleports you instantly to them, causing a dramatic
+    lightning strike
+    - Reinforcing grants you speed, and grants the player you
+    reinforced regen, strength and resistance
+    - Has a very long cooldown (at least 5 minutes)
+    - You cannot reinforce players who are at or above 60% health
+    - If you have stealth equipped, there is no lightning strike
+    when you reinforce a player.
+    - If the player being reinforced has stealth equipped but you don't, they
+    will also gain true invisibility for 6s. Additionally, subtext
+    in the reinforcement menu will note if the target has stealth
+    equipped and warn you that said player might not take kindly to
+    a noisy reinforcement. There will also be a confirmation box in
+    the event that you click such a player. If the player is carrying
+    a flag, they will still be invisible but the flag will not, and
+    will be seen hovering wherever they are
+- Add the 'Engineer' perk
+    - Allows you to spend a small amount of gold to build a turret
+    at a location
+    - Turrets are immobile, but can rotate to aim at the nearest valid
+    target
+    - Only one turret per player can exist at a time. If a player builds
+    a turret while another of theirs already exists, the old one will
+    instantly disappear
+    - A turret has a set lifespan, which increases marginally based on the
+    level of its creator (cap of 8 min). Turrets also have a healthbar,
+    they can be hit by enemies once per second a total of ten times before
+    being destroyed. They do not regenerate health.
+    - The Firebrand sword is efficient at killing turrets, it does so at twice the speed of regular
+    swords. Turrets are immune to all projectiles except arrows, which deal
+    half damage. Arrows benefiting from Point Blank or Long Shot deal as much
+    damage as a sword hit.
+    - Turrets fire arrows at a rate of once per second at the nearest enemy that they
+    have a clear shot at. They are willing and able to shoot through non-solid blocks
+    like vines, grass and falling water. Turret arrows do the same damage as regular arrows,
+    and benefit from the Point Blank perk if their owner has it equipped (they must keep it
+    equipped the whole time, not just when they create the turret).
+    - Abilities that give resistance to arrows are more effective against turret arrows than their
+    regular counterparts.
+    - Turrets will target enemy turrets, but they will prioritize enemy players first. If a turret
+    has targeted another turret but an enemy player walks within range, the turret will pivot
+    to the player immediately.
+    - Too many turrets cannot be coalesced in the same place. An allied turret cannot be
+    placed within 8 blocks of another allied turret. This is to prevent multiple
+    players with this perk stacking a bunch of turrets around their team's flag
+    - Turrets have an effective range of 7 blocks, but will begin aiming at targets who are
+    within 8 blocks.
+    - Turrets have 100% accuracy against stationary targets, but will have to adjust aim for
+    moving targets and will have their accuracy vary based on the target's moving patterns. A.k.a,
+    strafing is an effective method of dodging turret arrows (though not 100% effective, they
+    can still hit strafing players).
+- Add remaining cosmetic types
+    - Arrow trails
+    - Special kill messages (unique reformatting of the global
+    message that plays when you get a kill)
+    - Kill effect (visual effect that plays when you
+    kill a player)

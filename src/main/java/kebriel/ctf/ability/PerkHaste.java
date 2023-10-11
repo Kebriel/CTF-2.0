@@ -7,6 +7,7 @@ import kebriel.ctf.ability.components.SpawnAbility;
 import kebriel.ctf.display.gui.component.Purchaseable;
 import kebriel.ctf.player.Stat;
 import kebriel.ctf.player.CTFPlayer;
+import kebriel.ctf.util.JavaUtil;
 import kebriel.ctf.util.MinecraftUtil;
 import kebriel.ctf.internal.player.text.Text;
 import org.bukkit.Material;
@@ -47,7 +48,7 @@ public class PerkHaste implements SpawnAbility, Purchaseable {
 
 	@Override
 	public Text getDescription() {
-		return Text.get().primary("You spawn with ").secondary("Speed " + Constants.PERK_HASTE_SPEED_STRENGTH + " (" + Constants.PERK_HASTE_SPEED_DURATION + "s)");
+		return Text.get().primary("You spawn with ").secondary("Speed " + JavaUtil.asNumeral(Constants.PERK_HASTE_SPEED_STRENGTH) + " (" + Constants.PERK_HASTE_SPEED_DURATION + "s)");
 	}
 
 	@Override

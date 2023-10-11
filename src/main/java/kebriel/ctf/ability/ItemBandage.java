@@ -14,6 +14,7 @@ import kebriel.ctf.player.Stat;
 import kebriel.ctf.internal.player.text.Text;
 import kebriel.ctf.player.item.InvSlot;
 import kebriel.ctf.player.item.Item;
+import kebriel.ctf.util.JavaUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -59,8 +60,8 @@ public class ItemBandage implements ItemAbility, Purchaseable, EventReactor {
 	@Override
 	public Text getDescription() {
 		return Text.get().primary("Spawn with a bandage that will heal")
-				.newLine().red((double)Constants.ITEM_BANDAGE_HEAL_AMOUNT/2 + "❤").primary(" and give ").gray("Resistance " + Constants.ITEM_BANDAGE_RESIST_STRENGTH + "(" + Constants.ITEM_BANDAGE_RESIST_DURATION + "s)")
-				.newLine().primary("and ").red("Regen " + Constants.ITEM_BANDAGE_REGEN_STRENGTH + "(" + Constants.ITEM_BANDAGE_REGEN_DURATION + "s)").primary(" upon consumption");
+				.newLine().red((double)Constants.ITEM_BANDAGE_HEAL_AMOUNT/2 + "❤").primary(" and give ").gray("Resistance " + JavaUtil.asNumeral(Constants.ITEM_BANDAGE_RESIST_STRENGTH) + "(" + Constants.ITEM_BANDAGE_RESIST_DURATION + "s)")
+				.newLine().primary("and ").red("Regen " + JavaUtil.asNumeral(Constants.ITEM_BANDAGE_REGEN_STRENGTH) + "(" + Constants.ITEM_BANDAGE_REGEN_DURATION + "s)").primary(" upon consumption");
 	}
 
 	@Override

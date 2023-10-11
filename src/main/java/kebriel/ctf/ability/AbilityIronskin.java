@@ -10,6 +10,7 @@ import kebriel.ctf.event.reaction.EventReactor;
 import kebriel.ctf.internal.concurrent.AsyncExecutor;
 import kebriel.ctf.player.Stat;
 import kebriel.ctf.player.CTFPlayer;
+import kebriel.ctf.util.JavaUtil;
 import kebriel.ctf.util.MinecraftUtil;
 import kebriel.ctf.internal.player.text.Text;
 import org.bukkit.Material;
@@ -56,8 +57,8 @@ public class AbilityIronskin implements PassiveAbility, Purchaseable, EventReact
 
 	@Override
 	public Text getDescription() {
-		return Text.get().primary("You have permanent ").secondary("Resistance " + Constants.IRONSKIN_RESISTANCE_MULT).primary(" and")
-				.newLine().secondary("Slowness " + Constants.IRONSKIN_SLOW_MULT);
+		return Text.get().primary("You have permanent ").secondary("Resistance " + JavaUtil.asNumeral(Constants.IRONSKIN_RESISTANCE_MULT)).primary(" and")
+				.newLine().secondary("Slowness " + JavaUtil.asNumeral(Constants.IRONSKIN_SLOW_MULT));
 	}
 
 	@Override

@@ -12,6 +12,7 @@ import kebriel.ctf.event.reaction.GameStage;
 import kebriel.ctf.event.reaction.ThreadControl;
 import kebriel.ctf.player.Stat;
 import kebriel.ctf.internal.player.text.Text;
+import kebriel.ctf.util.JavaUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -55,8 +56,8 @@ public class AbilityFleetFooted implements Ability, Purchaseable, EventReactor {
 
 	@Override
 	public Text getDescription() {
-		return Text.get().primary("You gain ").secondary("Speed " + Constants.FLEET_FOOT_SPEED_MULT + " (" + Constants.FLEET_FOOT_SPEED_DURATION + "s)").primary(" when you pickup a flag")
-				.newLine().primary("You gain ").green("Jump " + Constants.FLEET_FOOT_JUMP_MULT + " (" + Constants.FLEET_FOOT_JUMP_DURATION + "s)").primary(" as well if it's your flag");
+		return Text.get().primary("You gain ").secondary("Speed " + JavaUtil.asNumeral(Constants.FLEET_FOOT_SPEED_MULT) + " (" + Constants.FLEET_FOOT_SPEED_DURATION + "s)").primary(" when you pickup a flag")
+				.newLine().primary("You gain ").green("Jump " + JavaUtil.asNumeral(Constants.FLEET_FOOT_JUMP_MULT) + " (" + Constants.FLEET_FOOT_JUMP_DURATION + "s)").primary(" as well if it's your flag");
 	}
 
 	@Override
