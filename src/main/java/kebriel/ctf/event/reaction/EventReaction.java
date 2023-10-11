@@ -8,17 +8,21 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
+import java.lang.annotation.Annotation;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class EventReaction implements Listener {
 
     private static final CTFMain main = CTFMain.instance;
 
-    private static final List<EventMethod> reactCache = new ArrayList<>();
+    private static final Map<ReactPriority, List<EventMethod>> reactCache = new HashMap<>();
 
     public static void register(EventReactor eventReactor) {
         // If this isn't part of the initial plugin loading progress, take responsibility off of main thread
@@ -33,7 +37,10 @@ public class EventReaction implements Listener {
         for(Method method : reactor.getClass().getDeclaredMethods()) {
             if(method.isAnnotationPresent(EventReact.class)) {
                 if(method.getParameterCount() == 1 && Event.class.isAssignableFrom(method.getParameterTypes()[0])) {
-                    reactCache.add(new EventMethod(reactor, method, (Class<? extends Event>) method.getParameterTypes()[0], method.getAnnotation(EventReact.class)));
+                    EventReact a = method.getAnnotation(EventReact.class);
+                    reactCache.get(a.priority()).add(new EventMethod(reactor, method, (Class<? extends Event>) method.getParameterTypes()[0], a));
+                }else{
+                    throw new IllegalArgumentException("EventReact annotation must be placed above a method with a single Event parameter");
                 }
             }
         }
@@ -56,13 +63,13 @@ public class EventReaction implements Listener {
 
     private static <T extends Event> void acceptEvent(T event) {
         AsyncExecutor.doAsyncIfNot(() -> { // All iteration done off main thread for best performance
-            for(EventMethod method : reactCache) {
-                if(method.hasExpired())
-                    continue;
-                if(method.getEventType().equals(event.getClass())) {
-                    method.run(event);
+            for(ReactPriority prio : ReactPriority.values())
+                for(EventMethod method : reactCache.get(prio)) {
+                    if(method.hasExpired())
+                        continue;
+                    if(method.getEventType().equals(event.getClass()))
+                        method.run(event);
                 }
-            }
         });
     }
 
@@ -70,7 +77,8 @@ public class EventReaction implements Listener {
      * Use and explanation can be found in BackgroundProcess.java
      */
     public static void purgeExpired() {
-        reactCache.removeIf(EventMethod::hasExpired);
+        for(ReactPriority prio : ReactPriority.values())
+            reactCache.get(prio).removeIf(EventMethod::hasExpired);
     }
 
     protected static class EventMethod {
@@ -91,11 +99,9 @@ public class EventReaction implements Listener {
         }
 
         public synchronized <T extends Event> void run(T event) {
-            boolean proceed = false;
             for(GameStage stage : allowedPhase)
-                proceed = stage.get();
-            if(!proceed)
-                return;
+                if(!stage.get())
+                    return;
 
             if(event instanceof AsyncEvent) {
                 AsyncExecutor.doAsyncIfNot(() -> {

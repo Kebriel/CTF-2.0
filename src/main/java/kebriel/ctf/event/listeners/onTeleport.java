@@ -16,14 +16,16 @@ public class onTeleport implements Listener {
 	public void onTp(PlayerTeleportEvent e) {
 		CTFPlayer player = CTFPlayer.get(e.getPlayer());
 
-		if(!MinecraftUtil.areChunksEqual(e.getTo().getChunk(), e.getFrom().getChunk()))
-			CTFEvent.fireEvent(new AsyncPlayerMoveChunkEvent(player, e.getTo().getChunk(), e.getFrom().getChunk()));
-
 		if(e.getCause() != TeleportCause.ENDER_PEARL)
 			return;
 
-		if(!Game.get().isPlaying() || player.getState().isDead() || !player.getIsSelected("item_pearl"))
+		if(!Game.get().isPlaying() || player.getState().isDead() || !player.getIsSelected("item_pearl")) {
 			e.setCancelled(true);
+			return;
+		}
+
+		if(!MinecraftUtil.areChunksEqual(e.getTo().getChunk(), e.getFrom().getChunk()))
+			CTFEvent.fireEvent(new AsyncPlayerMoveChunkEvent(player, e.getTo().getChunk(), e.getFrom().getChunk()));
 	}
 
 }

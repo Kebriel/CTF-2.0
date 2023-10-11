@@ -10,6 +10,6 @@ public abstract class AsyncEvent extends CTFEvent {
 
     public AsyncEvent() {}
 
-    public void postProcess() {}
-    public void preProcess() {}
+    public abstract void postProcess();
+    public abstract void preProcess();
 }

@@ -255,8 +255,8 @@ public class SQLManager {
 
         public String formatType() {
             String formatted = type.toString();
-            if (type == SQLDataType.VARCHAR) formatted += "(20)";
-            if (type == SQLDataType.BIGINT) formatted += "(255)";
+            if(type == SQLDataType.VARCHAR) formatted += "(20)";
+            if(type == SQLDataType.BIGINT) formatted += "(255)";
             return formatted;
         }
     }

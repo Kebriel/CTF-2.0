@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * Denotes an EntityWrapper subclass as being a render-only or
- * 'packet' entity -- i.e., an entity that should and can never
+ * 'packet' entity -- i.e., an entity that shouldn't and can never
  * be actually spawned into the world, and can only be 'rendered'
  * using packets.
  */

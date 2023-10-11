@@ -5,6 +5,7 @@ import kebriel.ctf.util.MinecraftUtil;
 import org.bukkit.Bukkit;
 
 public enum ThreadControl {
+
     MAIN, BUKKIT_ASYNC, ASYNC;
 
     public void accept(Runnable run) {

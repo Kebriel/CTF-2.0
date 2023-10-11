@@ -9,6 +9,7 @@ import kebriel.ctf.player.Stat;
 import kebriel.ctf.internal.player.text.Text;
 import kebriel.ctf.player.item.InvSlot;
 import kebriel.ctf.player.item.Item;
+import kebriel.ctf.util.JavaUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -48,7 +49,7 @@ public class ItemKBStick implements ItemAbility, Purchaseable {
 	@Override
 	public Text getDescription() {
 		return Text.get().primary("Spawn with a stick that's enchanted")
-				.newLine().primary("with ").secondary("Knockback " + Constants.ITEM_KB_STICK_STRENGTH);
+				.newLine().primary("with ").secondary("Knockback " + JavaUtil.asNumeral(Constants.ITEM_KB_STICK_STRENGTH));
 	}
 
 	@Override
