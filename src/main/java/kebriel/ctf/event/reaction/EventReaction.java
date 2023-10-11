@@ -24,6 +24,12 @@ public class EventReaction implements Listener {
 
     private static final Map<ReactPriority, List<EventMethod>> reactCache = new HashMap<>();
 
+
+    static {
+        for(ReactPriority prio : ReactPriority.values())
+            reactCache.put(prio, new ArrayList<>());
+    }
+
     public static void register(EventReactor eventReactor) {
         // If this isn't part of the initial plugin loading progress, take responsibility off of main thread
         if(main.isEnabled()) {
